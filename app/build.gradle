@@ -93,6 +93,13 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp"
 
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-push:${appCenterSdkVersion}"
+
+    implementation "com.microsoft.appcenter:appcenter-push:${appCenterSdkVersion}"
+
+
     // Testing dependencies
     testImplementation "junit:junit:$rootProject.junitVersion"
     testImplementation "com.squareup.okhttp3:mockwebserver:$rootProject.mockwebserverVersion"

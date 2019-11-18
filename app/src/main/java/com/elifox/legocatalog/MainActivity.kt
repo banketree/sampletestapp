@@ -2,6 +2,7 @@
 
 package com.elifox.legocatalog
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,13 @@ import com.elifox.legocatalog.databinding.ActivityMainBinding
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
+import com.microsoft.appcenter.crashes.Crashes
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.AppCenter
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import timber.log.Timber
+
 
 class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
@@ -31,8 +39,12 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     override fun supportFragmentInjector() = dispatchingAndroidInjector
 
+    @SuppressLint("TimberArgCount")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        AppCenter.start(application, "bfbf6cf4-e533-48f0-a55a-fb64185dfb1a",
+                Analytics::class.java, Crashes::class.java)
 
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this,
                 R.layout.activity_main)
@@ -48,7 +60,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         // Set up navigation menu
         binding.navigationView.setupWithNavController(navController)
 
-        Log.d("tag","mainActivity is started")
+        Timber.d("MainActivity","mainActivity is started")
     }
 
 
